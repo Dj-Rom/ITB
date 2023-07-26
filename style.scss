@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .modalWindow {
+    background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
+    position: fixed;
+    top: 38%;
+    width: 100%;
+    height: 18.75rem;
+    display: grid;
+    background-color: rgba(232, 231, 220, 0.947);
+    z-index: 222;
+    opacity: .95;
+    border-radius: 20px;
+  }
+  
+  .modalWindow_img {
+    position: absolute;
+  }
+  
+  .modalWindow_text {
+    left: 21rem;
+    top: 2rem;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  
+  .modalWindow_text2 {
+    left: 32rem;
+    top: 2rem;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: stretch;
+  }
+  
+  /* loading anim */
+  
+  .ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border: 3px solid #3c3c3c;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 150px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #fff000;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #fff000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  
+    &:before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid #fff000;
+      border-right: 3px solid #fff000;
+      border-radius: 50%;
+      animation: animateC 2s linear infinite;
+    }
+  }
+  
+  span {
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff000;
+      top: -6px;
+      right: -8px;
+      box-shadow: 0 0 20px #fff000;
+    }
+  }
+  
+  .contener {
+    display: grid;
+    grid-column-gap: 4em;
+    grid-row-gap: 4em;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    justify-items: stretch;
+    align-items: center;
+    align-content: center;
+    background-color: rgb(219, 217, 217);
+  }
+  
+  img {
+    position: absolute;
+    top: -.96rem;
+    width: 18.75rem;
+    height: 18.75rem;
+    flex-shrink: 0;
+    z-index: 10;
+    box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+  
+  .backgroundImg {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20.75rem;
+    height: 23.8125rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    background: #f8f6f6f0;
+    z-index: 2;
+  }
+  
+  .bGText {
+    position: absolute;
+    bottom: .69rem;
+    color: #000;
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 3;
+  }
+  
+  /* media for mob */
+  @media screen and (max-width: 600px) {
+    .modalWindow {
+      box-shadow: 0px 0px 16px -7px rgba(34, 60, 80, 0.2);
+      position: fixed;
+      top: 38%;
+      left: 1rem;
+      width: 18.75rem;
+      height: 31rem;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(232, 231, 220, 0.947);
+      z-index: 222;
+      border-radius: 20px;
+    }
+  
+    .modalWindow_img {
+      position: absolute;
+    }
+  
+    .modalWindow_text {
+      top: 21rem;
+      left: 2rem;
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-content: space-around;
+      align-items: stretch;
+    }
+  
+    .modalWindow_text2 {
+      top: 21rem;
+      left: 9rem;
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-content: space-around;
+      align-items: stretch;
+    }
+  }
+  
+  @keyframes animateC {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: rotate(45deg);
+    }
+  
+    100% {
+      transform: rotate(405deg);
+    }
+  }
+  

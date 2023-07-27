@@ -1,3 +1,4 @@
+"use strict";
 let modalWindow = document.querySelector('.modalWindow')
 let mWImg = document.querySelector(".modalWindow_img")
 let mWName = document.querySelector(".modalWindow_text_nameRes")
@@ -10,7 +11,7 @@ let mWGender = document.querySelector(".modalWindow_text_genderRes")
 const height = document.body.offsetHeight
 const screenHeight = window.innerHeight
 const scrolled = window.scrollY
-const threshold = height - screenHeight / 6
+const threshold = height - screenHeight / 4
 const position = scrolled + screenHeight
 const loadAnimation = document.querySelector(".ring")
 const contener = document.querySelector('.contener');
@@ -52,8 +53,41 @@ async function fetchMovies(num) {
                 backgroundImg.appendChild(img);
                 contener.appendChild(personage)
 
-            }
-        }).then(() => { loadAnimation.style.display = 'none'; })
+            } return data
+        })
+        .then(data => {
+            loadAnimation.style.display = 'none';
+            return data
+        })
+        .then(data => {
+            window.addEventListener('click', (eo) => {
+                eo = eo || window.event;
+                data.results.forEach(element => {
+
+                    if (modalWindow.style.display == 'block') {
+                        if (eo.target.alt == undefined) {
+                            modalWindow.style.display = 'none'
+                        }
+                    }
+                    if (element.name == eo.target.alt) {
+
+
+
+                        mWImg.style.top = 0
+                        modalWindow.style.display = 'block'
+                        mWImg.alt = element.name
+                        mWName.innerHTML = element.name
+                        mWStatus.innerHTML = element.status
+                        mWGender.innerHTML = element.gender
+                        mWLocation.innerHTML = element.location.name
+                        mWOrigin.innerHTML = element.origin.name
+                        mWSpecies.innerHTML = element.species
+                        mWImg.src = element.image
+
+                    }
+                });
+            })
+        })
         .catch(error => {
             loadAnimation.innerHTML = error.message
             loadAnimation.style.fontSize = "10px"
@@ -66,42 +100,28 @@ fetchMovies(1)
 function checkPosition() {
     if (position >= threshold) {
         if (HowManyLoadedPage < ArrayGetServerAll[0].info.pages) {
-
             HowManyLoadedPage++
             fetchMovies(HowManyLoadedPage)
-            console.log(HowManyLoadedPage);
-
         } else HowManyLoadedPage = 1
     }
 }
 
 
 ; (() => {
-    window.addEventListener('scrollend', checkPosition, true)
-    window.addEventListener('resize', checkPosition)
-    window.addEventListener('click', (eo) => {
-        eo = eo || window.event;
-        console.log(eo.target.alt);
-        ArrayGetServerAll[0].results.forEach(element => {
-
-            if (modalWindow.style.display == 'block') {
-                if (eo.target.alt == undefined) {
-                    modalWindow.style.display = 'none'
-                }
-            }
-            if (element.name == eo.target.alt) {
-                    mWImg.style.top = 0
-                    modalWindow.style.display = 'block'
-                    mWImg.alt = element.name
-                    mWName.innerHTML = element.name
-                    mWStatus.innerHTML = element.status
-                    mWGender.innerHTML = element.gender
-                    mWLocation.innerHTML = element.location.name
-                    mWOrigin.innerHTML = element.origin.name
-                    mWSpecies.innerHTML = element.species
-                    mWImg.src = element.image
-                
-            }
-        });
-    })
+    window.addEventListener('scroll', throttle(checkPosition, 550))
+    window.addEventListener('resize', throttle(checkPosition, 550))
 })()
+function throttle(callee, timeout) {
+    let timer = null
+
+    return function perform(...args) {
+        if (timer) return
+
+        timer = setTimeout(() => {
+            callee(...args)
+
+            clearTimeout(timer)
+            timer = null
+        }, timeout)
+    }
+}

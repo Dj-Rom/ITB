@@ -5,15 +5,17 @@
 }
 
 .modalWindow {
+  background: -webkit-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
   background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
   position: fixed;
-  top: 18%;
+  
   width: 37.75rem;
   height: 18.75rem;
+  display: -ms-grid;
   display: grid;
   background-color: rgba(232, 231, 220, 0.947);
   z-index: 222;
-  opacity: 0.98;
+  
   border-radius: 20px;
 }
 
@@ -23,18 +25,29 @@
 
 .modalWindow_text {
   width: -moz-min-content;
+  width: -webkit-min-content;
   width: min-content;
   left: 21rem;
   top: 2rem;
   position: absolute;
+  display: -ms-grid;
   display: grid;
   row-gap: 0.32rem;
   overflow-y: auto;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-content: stretch;
-  align-items: stretch;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
 }
 
 .modalWindow_text2 {
@@ -42,14 +55,24 @@
   left: 28rem;
   top: 2rem;
   position: absolute;
+  display: -ms-grid;
   display: grid;
   row-gap: 0.32rem;
   overflow-y: auto;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-content: stretch;
-  align-items: stretch;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
 }
 
 /* loading anim */
@@ -57,7 +80,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
   background: transparent;
@@ -84,7 +108,8 @@
   border-top: 3px solid #fff000;
   border-right: 3px solid #fff000;
   border-radius: 50%;
-  animation: animateC 2s linear infinite;
+  -webkit-animation: animateC 2s linear infinite;
+          animation: animateC 2s linear infinite;
 }
 
 span {
@@ -95,8 +120,10 @@ span {
   width: 50%;
   height: 4px;
   background: transparent;
-  transform-origin: left;
-  animation: animate 2s linear infinite;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-animation: animate 2s linear infinite;
+          animation: animate 2s linear infinite;
 }
 span:before {
   content: "";
@@ -111,14 +138,22 @@ span:before {
 }
 
 .contener {
+  display: -ms-grid;
   display: grid;
   grid-column-gap: 4em;
   grid-row-gap: 4em;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  align-content: center;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-grid-column-align: center;
+      justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   padding-top: 57px;
   background-color: rgb(219, 217, 217);
 }
@@ -128,7 +163,8 @@ img {
   top: -0.96rem;
   width: 18.75rem;
   height: 18.75rem;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   z-index: 10;
   box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -136,15 +172,27 @@ img {
 
 .backgroundImg {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
-  align-content: space-around;
-  justify-content: flex-end;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 20.75rem;
   height: 23.8125rem;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   border-radius: 0.625rem;
   background: rgba(248, 246, 246, 0.9411764706);
   z-index: 2;
@@ -167,12 +215,18 @@ img {
   .modalWindow {
     box-shadow: 0px 0px 16px -7px rgba(34, 60, 80, 0.2);
     position: fixed;
-    top: 18%;
+    top: 5%;
+    left: auto;
     width: 18.75rem;
-    height: 39rem;
+    height: 35rem;
+    display: -ms-grid;
     display: grid;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     background-color: rgba(232, 231, 220, 0.947);
     z-index: 222;
     border-radius: 20px;
@@ -182,17 +236,28 @@ img {
   }
   .modalWindow_text {
     width: -moz-min-content;
+    width: -webkit-min-content;
     width: min-content;
     top: 21rem;
     left: 2rem;
     position: absolute;
+    display: -ms-grid;
     display: grid;
     row-gap: 0.32rem;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-content: space-around;
-    align-items: stretch;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-line-pack: distribute;
+        align-content: space-around;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
     overflow-y: auto;
   }
   .modalWindow_text2 {
@@ -200,28 +265,62 @@ img {
     top: 21rem;
     left: 10rem;
     position: absolute;
+    display: -ms-grid;
     display: grid;
     row-gap: 0.32rem;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-content: space-around;
-    align-items: stretch;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-line-pack: distribute;
+        align-content: space-around;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+}
+@-webkit-keyframes animateC {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 @keyframes animateC {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes animate {
+  0% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
   }
 }
 @keyframes animate {
   0% {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
   }
   100% {
-    transform: rotate(405deg);
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
   }
-}/*# sourceMappingURL=style.css.map */
+}

@@ -1,6 +1,5 @@
 "use strict";
 const modalWindow = document.querySelector('.modalWindow')
-modalWindow.style.bottom =  innerWidth /2  + 'px'
 const mWImg = document.querySelector(".modalWindow_img")
 const mWName = document.querySelector(".modalWindow_text_nameRes")
 const mWStatus = document.querySelector(".modalWindow_text_statusRes")
@@ -60,7 +59,6 @@ async function fetchMovies(num) {
         })
         .then(data => {
             window.addEventListener('click', (eo) => {
-                console.log(event.target.className);
                 eo = eo || window.event;
                 data.results.forEach(element => {
 
@@ -71,6 +69,7 @@ async function fetchMovies(num) {
 
                     }
                     if (element.name == eo.target.alt) {
+                        modalWindow.style.bottom =  innerWidth /2 - 302 + 'px'
                         mWImg.style.top = 0
                         modalWindow.style.display = 'block'
                         mWImg.alt = element.name

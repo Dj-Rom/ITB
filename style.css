@@ -286,7 +286,7 @@
   }
   @media screen and (max-height: 405px){
     .modalWindow {
-        top: 0px;
+            margin: 27%
   }
 }
   @-webkit-keyframes animateC {

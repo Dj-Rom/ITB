@@ -8,12 +8,13 @@
     background: linear-gradient(270deg, #FFF 49.40%, rgba(255, 255, 255, 0.00) 68.40%);
     position: fixed;
     top: 38%;
-    width: 100%;
+    left: 0.1em;
+    width: 68.75rem;
     height: 18.75rem;
     display: grid;
     background-color: rgba(232, 231, 220, 0.947);
     z-index: 222;
-    opacity: .95;
+    opacity: .98;
     border-radius: 20px;
 }
 
@@ -26,7 +27,9 @@
     left: 21rem;
     top: 2rem;
     position: absolute;
-    display: flex;
+    display: grid;
+    row-gap: 0.32rem;
+    overflow-y: auto;
     flex-wrap: wrap;
     justify-content: space-evenly;
     flex-direction: column;
@@ -35,10 +38,12 @@
 }
 
 .modalWindow_text2 {
-    left: 32rem;
+    left: 28rem;
     top: 2rem;
     position: absolute;
-    display: flex;
+    display: grid;
+    row-gap: 0.32rem;
+    overflow-y: auto;
     flex-wrap: wrap;
     justify-content: space-evenly;
     flex-direction: column;
@@ -112,12 +117,11 @@ span:before {
     grid-column-gap: 4em;
     grid-row-gap: 4em;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-
     justify-content: center;
-    justify-items: stretch;
+    justify-items: center;
     align-items: center;
     align-content: center;
+    padding-top: 57px;
     background-color: rgb(219, 217, 217);
 }
 
@@ -153,7 +157,7 @@ img {
 
 .bGText {
     position: absolute;
-    bottom: .69rem;
+    bottom: 2.69rem;
     color: #000;
 
     font-family: Inter;
@@ -170,10 +174,9 @@ img {
     .modalWindow {
         box-shadow: 0px 0px 16px -7px rgba(34, 60, 80, .2);
         position: fixed;
-        top: 38%;
-        left: 1rem;
+        top: 18%;
         width: 18.75rem;
-        height: 31rem;
+        height: 39rem;
         display: grid;
         align-items: center;
         justify-content: center;
@@ -191,19 +194,22 @@ img {
         top: 21rem;
         left: 2rem;
         position: absolute;
-        display: flex;
+        display: grid;
+        row-gap: 0.32rem;
         flex-wrap: wrap;
         justify-content: space-evenly;
         flex-direction: column;
         align-content: space-around;
         align-items: stretch;
+        overflow-y: auto;
     }
 
     .modalWindow_text2 {
         top: 21rem;
-        left: 9rem;
+        left: 10rem;
         position: absolute;
-        display: flex;
+        display: grid;
+        row-gap: 0.32rem;
         flex-wrap: wrap;
         justify-content: space-evenly;
         flex-direction: column;

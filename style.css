@@ -284,6 +284,11 @@
               align-items: stretch;
     }
   }
+  @media screen and (max-height: 405px){
+    .modalWindow {
+        top: 0px;
+  }
+}
   @-webkit-keyframes animateC {
     0% {
       -webkit-transform: rotate(0deg);

@@ -1,5 +1,6 @@
 "use strict";
 const modalWindow = document.querySelector('.modalWindow')
+modalWindow.style.bottom =  innerWidth /2  + 'px'
 const mWImg = document.querySelector(".modalWindow_img")
 const mWName = document.querySelector(".modalWindow_text_nameRes")
 const mWStatus = document.querySelector(".modalWindow_text_statusRes")

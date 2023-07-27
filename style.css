@@ -7,7 +7,7 @@
 .modalWindow {
   background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
   position: fixed;
-  top: 38%;
+  top: 18%;
   width: 37.75rem;
   height: 18.75rem;
   display: grid;

@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +8,8 @@
   
   .modalWindow {
     overflow: auto;
-    background: -webkit-gradient(linear, right top, left top, color-stop(49.4%, #FFF), color-stop(68.4%, rgba(255, 255, 255, 0)));
     background: -o-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
+    background: -webkit-gradient(linear, right top, left top, color-stop(49.4%, #FFF), color-stop(68.4%, rgba(255, 255, 255, 0)));
     background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     position: fixed;
     
@@ -29,7 +30,7 @@
   .modalWindow_text {
     
     width: auto;
-    left: 18rem;
+    left: 19rem;
     top: 2rem;
     position: absolute;
     display: -ms-grid;
@@ -55,7 +56,7 @@
   .modalWindow_text2 {
    
     width: auto;
-    left: 28rem;
+    left: 29rem;
     top: 2rem;
     position: absolute;
     display: -ms-grid;
@@ -245,9 +246,7 @@
       position: absolute;
     }
     .modalWindow_text {
-      width: -moz-min-content;
-      width: -webkit-min-content;
-      width: min-content;
+        width: auto;
       top: 21rem;
       left: 2rem;
       position: absolute;
@@ -271,7 +270,7 @@
       overflow-y: auto;
     }
     .modalWindow_text2 {
-      width: revert;
+        width: auto;
       top: 21rem;
       left: 10rem;
       position: absolute;

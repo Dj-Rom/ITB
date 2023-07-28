@@ -5,6 +5,7 @@
   }
   
   .modalWindow {
+    overflow: auto;
     background: -webkit-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     position: fixed;
@@ -218,7 +219,8 @@
       top: 5%;
       left: auto;
       width: 18.75rem;
-      height: 35rem;
+      height: 40rem;
+      overflow: auto;
       display: -ms-grid;
       display: grid;
       -webkit-box-align: center;
@@ -286,7 +288,7 @@
   }
   @media screen and (max-height: 405px){
     .modalWindow {
-            margin: 27%
+        top: 0px;
   }
 }
   @-webkit-keyframes animateC {

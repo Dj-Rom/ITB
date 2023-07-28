@@ -6,6 +6,7 @@ const mWStatus = document.querySelector(".modalWindow_text_statusRes")
 const mWSpecies = document.querySelector(".modalWindow_text_speciesRes")
 const mWOrigin = document.querySelector(".modalWindow_text_originRes")
 const mWLocation = document.querySelector(".modalWindow_text_locationRes")
+const mWEpisode = document.querySelector(".modalWindow_text_episodeRes")
 const mWGender = document.querySelector(".modalWindow_text_genderRes")
 const height = document.body.offsetHeight
 const screenHeight = window.innerHeight
@@ -14,14 +15,18 @@ const threshold = height - screenHeight / 4
 const position = scrolled + screenHeight
 const loadAnimation = document.querySelector(".ring")
 const contener = document.querySelector('.contener');
+const options = `{   month: 'long', day: 'numeric', , year: 'numeric'}`;
 let ArrayGetServerAll = [];
+let ArrayGetEpisode = [];
 let HowManyLoadedPage = 1;
+let dataFirstEpisodes = []
+let episode = ""
+let mWImgstatus = true
 async function getAllArrayServer() {
     const AllDate = await fetch(`https://rickandmortyapi.com/api/character`, { method: 'GET' })
         .then(response => response.json())
         .then(data => { ArrayGetServerAll.push(data) });
-    console.log(ArrayGetServerAll[0].info.pages)
-
+    // ///////////////////////////////////////////////////////////////
 } getAllArrayServer()
 async function fetchMovies(num) {
     const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${num}`, { method: 'GET' })
@@ -55,32 +60,95 @@ async function fetchMovies(num) {
         })
         .then(data => {
             loadAnimation.style.display = 'none';
+
             return data
         })
         .then(data => {
             window.addEventListener('click', (eo) => {
+
                 eo = eo || window.event;
+
                 data.results.forEach(element => {
-
-
-                    if (mWImg.status === "active" && eo.target.alt === undefined || event.target.className == "modalWindow" || event.target.className == "modalWindow_img") {
+                    if (mWImgstatus === true && eo.target.alt === undefined || event.target.className == "modalWindow" || event.target.className == "modalWindow_img") {
                         modalWindow.style.display = 'none'
-                        mWImg.status = "none"
-
+                        mWImgstatus = false
                     }
+
                     if (element.name == eo.target.alt) {
-                        modalWindow.style.bottom =  innerWidth /2 - 302 + 'px'
+
+
+                        async function fetchLocation(num) {
+                            const location = await fetch(element.location.url, { method: 'GET' })
+                                .then(data => { return data })
+                                .then(response => response.json())
+                                .then(response => mWLocation.innerHTML = response.name)
+                                .catch(e => console.error("error loading location from server", e))
+                        }
+
+                        async function fetchEpisode() {
+                            for (let i = 0; i < element.episode.length; i++) {
+                                loadArrayEpisodes(i)
+                            }
+                            async function loadArrayEpisodes(i) {
+
+                                const arrayEpisode = await fetch(element.episode[i], { method: 'GET' })
+                                    .then(data => data)
+                                    .then(response => { return response.json() })
+                                    .then(data => {
+                                        ArrayGetEpisode.push(data)
+                                        return data
+                                    })
+                                    .then(d => {
+                                        if (ArrayGetEpisode.length > 0) {
+                                            ArrayGetEpisode.forEach(elem => {
+                                                let data = new Date(elem.air_date)
+                                                dataFirstEpisodes.push(data.getTime())
+                                                dataFirstEpisodes = dataFirstEpisodes.sort((a, b) => a = b)
+
+                                                let firstDate = new Date()
+                                                firstDate.setTime(dataFirstEpisodes[0])
+                                                firstDate = firstDate.toLocaleDateString('en', options)
+
+                                                if (data.toLocaleDateString('en', options) === firstDate) {
+                                                    mWEpisode.innerHTML = elem.name
+
+
+                                                }
+                                            });
+                                        } return d
+                                    })
+                                    .then(elem => fetchLocation())
+                                    .then(elem => fetchOrigin())
+
+                            }
+                        }
+                        async function fetchOrigin() {
+                            const episode = await fetch(element.origin.url, { method: 'GET' })
+                                .then(data => { return data })
+                                .then(response => response.json())
+                                .then(response => mWOrigin.innerHTML = response.name,)
+                                .catch(e => console.error("error loading Episode from server", e),
+                                    mWOrigin.innerHTML = "Sorry, I don't know")
+                            modalWindow.style.display = 'block'
+                        }
+                        fetchEpisode()
+
+                        modalWindow.style.bottom = innerWidth / 2 - 302 + 'px'
                         mWImg.style.top = 0
-                        modalWindow.style.display = 'block'
-                        mWImg.alt = element.name
+                        mWImg.name = element.name
                         mWName.innerHTML = element.name
                         mWStatus.innerHTML = element.status
                         mWGender.innerHTML = element.gender
-                        mWLocation.innerHTML = element.location.name
-                        mWOrigin.innerHTML = element.origin.name
                         mWSpecies.innerHTML = element.species
                         mWImg.src = element.image
-                        mWImg.status = "active"
+                        mWImg.name = "true"
+                        console.log(mWImgstatus);
+
+
+                        ArrayGetEpisode.length = 0
+                        dataFirstEpisodes.length = 0
+
+
 
                     }
                 });
@@ -92,6 +160,7 @@ async function fetchMovies(num) {
             loadAnimation.style.color = "red"
             console.error(error);
         });
+
 }
 fetchMovies(1)
 
@@ -123,3 +192,7 @@ function throttle(callee, timeout) {
         }, timeout)
     }
 }
+
+
+
+

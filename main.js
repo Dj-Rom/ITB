@@ -15,26 +15,48 @@ const threshold = height - screenHeight / 4
 const position = scrolled + screenHeight
 const loadAnimation = document.querySelector(".ring")
 const contener = document.querySelector('.contener');
+const page = document.querySelector('.page')
 const options = `{   month: 'long', day: 'numeric', , year: 'numeric'}`;
+// pagination
+const h3 = document.querySelector("h3")
+h3.style.right = "2px"
+const onOff = document.querySelector("#on_off")
+const pagin = document.querySelector('.pagination')
+pagin.style.display = 'none'
+const toggle = document.querySelector('#toggle')
+const back = document.querySelector("#back")
+const next = document.querySelector("#next")
+const p1 = document.querySelector("#p1")
 let ArrayGetServerAll = [];
 let ArrayGetEpisode = [];
 let HowManyLoadedPage = 1;
 let dataFirstEpisodes = []
 let episode = ""
 let mWImgstatus = true
+let pageOnServer = 1
 async function getAllArrayServer() {
     const AllDate = await fetch(`https://rickandmortyapi.com/api/character`, {
         method: 'GET'
     }).then(response => response.json()).then(data => {
         ArrayGetServerAll.push(data)
-    });
-    // ///////////////////////////////////////////////////////////////
+        pageOnServer = ArrayGetServerAll[0].info.pages
+        return data
+    }).catch(e => console.error(e));
+   
 }
+
+function newPage(){
+    const nowPage = document.createElement('div')
+    nowPage.className = 'page'
+    contener.appendChild(nowPage)
+}  
 getAllArrayServer()
 async function fetchMovies(num) {
+    const page = document.querySelector('.page')
     const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${num}`, {
         method: 'GET'
     }).then(data => {
+        pagination ()
         loadAnimation.style.display = 'block';
         return data
     }).then(response => {
@@ -48,6 +70,7 @@ async function fetchMovies(num) {
             const bGText = document.createElement('h5');
             bGText.className = 'bGText';
             backgroundImg.className = "backgroundImg"
+            personage.className = "personage"
             personage.id = data.results[i].name;
             img.src = data.results[i].image;
             img.alt = data.results[i].name;
@@ -55,7 +78,8 @@ async function fetchMovies(num) {
             backgroundImg.appendChild(bGText);
             personage.appendChild(backgroundImg);
             backgroundImg.appendChild(img);
-            contener.appendChild(personage)
+            page.append(personage)
+           
         }
         return data
     }).then(data => {
@@ -90,6 +114,7 @@ async function fetchMovies(num) {
                                 ArrayGetEpisode.push(data)
                                 return data
                             }).then(d => {
+                                // sort Array for first episode
                                 if (ArrayGetEpisode.length > 0) {
                                     ArrayGetEpisode.forEach(elem => {
                                         let data = new Date(elem.air_date)
@@ -102,9 +127,10 @@ async function fetchMovies(num) {
                                             mWEpisode.innerHTML = elem.name
                                         }
                                     });
-                                }
+                                }loadAnimation.style.display = 'block';
                                 return d
-                            }).then(elem => fetchLocation()).then(elem => fetchOrigin())
+                            }).then(elem => fetchLocation()).then(elem => {fetchOrigin(), loadAnimation.style.display = 'none'})
+                            .catch(e => console.error(e));
                         }
                     }
                     async function fetchOrigin() {
@@ -112,8 +138,12 @@ async function fetchMovies(num) {
                             method: 'GET'
                         }).then(data => {
                             return data
-                        }).then(response => response.json()).then(response => mWOrigin.innerHTML = response.name, ).catch(e => console.error("error loading Episode from server", e), mWOrigin.innerHTML = "Sorry, I don't know")
+                        }).then(response => response.json())
+                        .then(response => {mWOrigin.innerHTML = response.name
+                         return response })
+                            .catch(e => console.error("error loading Episode from server", e), mWOrigin.innerHTML = "Unknow")
                         modalWindow.style.display = 'block'
+                        
                     }
                     fetchEpisode()
                     modalWindow.style.bottom = innerWidth / 2 - 302 + 'px'
@@ -125,9 +155,11 @@ async function fetchMovies(num) {
                     mWSpecies.innerHTML = element.species
                     mWImg.src = element.image
                     mWImg.name = "true"
-                    console.log(mWImgstatus);
+                    mWImg.style.top = "0px"
+                    mWImg.style.left="0px"
                     ArrayGetEpisode.length = 0
                     dataFirstEpisodes.length = 0
+                    
                 }
             });
         }, true)
@@ -139,20 +171,18 @@ async function fetchMovies(num) {
     });
 }
 fetchMovies(1)
-
+// load function for new page
 function checkPosition() {
     if (position >= threshold) {
+        if(!toggle.checked){
         if (HowManyLoadedPage < ArrayGetServerAll[0].info.pages) {
             HowManyLoadedPage++
             fetchMovies(HowManyLoadedPage)
-        } else HowManyLoadedPage = 1
-    }
+        } else HowManyLoadedPage = 0
+    }}
 };
-(() => {
-    window.addEventListener('scroll', throttle(checkPosition, 550))
-    window.addEventListener('resize', throttle(checkPosition, 550))
-})()
 
+// slow loading feature for scrolling
 function throttle(callee, timeout) {
     let timer = null
     return function perform(...args) {
@@ -163,4 +193,73 @@ function throttle(callee, timeout) {
             timer = null
         }, timeout)
     }
+}
+// pagination
+
+function pagination (){
+    p1.innerHTML = HowManyLoadedPage
+}
+
+
+    window.addEventListener('scroll', throttle(checkPosition, 550))
+    window.addEventListener('resize', throttle(checkPosition, 550))
+
+window.addEventListener('click', (eo) => {
+    
+    eo = eo || window.event;
+    const page = document.querySelector('.page')
+//    pagination switcher
+    if(!toggle.checked){
+        h3.style.right = "5px"
+        h3.style.left = ""
+        pagin.style.display = 'none'
+        onOff.innerHTML = "Pagination OFF"
+    }else if (toggle.checked){
+   
+        h3.style.left = "5px"
+        h3.style.right = ""
+        contener.removeChild(page)
+        newPage()
+        fetchMovies(HowManyLoadedPage)
+        pagin.style.display = 'block'
+        onOff.innerHTML = "Pagination ON"}
+
+
+    
+    
+    if (eo.target.id === "back"){
+        const page = document.querySelector('.page')
+        contener.removeChild(page)
+        newPage()
+
+        if (HowManyLoadedPage > 1) {
+            HowManyLoadedPage--}
+        else if (HowManyLoadedPage < 1) {
+            HowManyLoadedPage = 1
+        }
+
+        fetchMovies(HowManyLoadedPage)
+        pagination ()
+    }
+    else if (eo.target.id === "next"){
+        const page = document.querySelector('.page')
+        if(pageOnServer > HowManyLoadedPage){
+        contener.removeChild(page)
+        newPage()
+        
+        HowManyLoadedPage++;
+        
+        fetchMovies(HowManyLoadedPage)
+        pagination ()
+    }}
+});
+// scroll up function with animation
+function up() {
+    let timer
+	 let top = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+  if(top > 0) {
+	window.scrollBy(0,((top+100)/-10));
+	 timer = setTimeout('up()',20);
+  } else clearTimeout(timer);
+  return false;
 }

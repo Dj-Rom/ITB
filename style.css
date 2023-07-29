@@ -1,15 +1,53 @@
-
 * {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
   }
-  
+  .contener{
+    display: -ms-grid;
+    display: grid;
+    grid-column-gap: 4em;
+    grid-row-gap: 4em;
+    -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-grid-column-align: center;
+    justify-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    padding-top: 57px;
+    background-color: rgb(219, 217, 217);
+    
+  }
+  .page{
+    position: relative;
+    display: contents;
+  }
+  .toTop{
+    text-decoration: none;
+    position: fixed;
+    bottom: 2%;
+    right: 14px;
+    z-index: 223;
+    font-size: xx-large;
+    background-color: #000;
+    opacity: .4;
+    border-radius: 15px;
+    color: #fff;
+  }
+  .toTop:hover{
+    background-color: rgba(73,168,68,1)
+  }
   .modalWindow {
     overflow: auto;
-    background: -o-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     background: -webkit-gradient(linear, right top, left top, color-stop(49.4%, #FFF), color-stop(68.4%, rgba(255, 255, 255, 0)));
+    background: -o-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     background: linear-gradient(270deg, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
     position: fixed;
     
@@ -78,9 +116,156 @@
         -ms-flex-align: stretch;
             align-items: stretch;
   }
+  /* tumbler for on off pagination */
+ 
+  @import url(https://fonts.googleapis.com/css?family=Sanchez);
+
+.togg,
+  label ::before,
+ label::after {
+  transition: 400ms all ease-in-out 50ms;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  z-index: 334;
+}
+
+
+
+html,body{ text-align: center; font-family: 'Sanchez', serif;}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+a{ color: rgba(43,43,43,1); text-decoration: none; padding: 10px; border-bottom: 2px solid rgba(43,43,43,1); }
+
+a:hover{ background: rgba(43,43,43,1); color: rgba(255,255,255,1); }
+
+
+/*Button is :CHECKED*/
+
+input[type="checkbox"]:checked ~ .togg {
+  background: rgba(73,168,68,1);
+  box-shadow: 0 0 2px rgba(73,168,68,1);
+}
+
+input[type="checkbox"]:checked ~ .togg label {
+  left: 110px;
+  transform: rotate(360deg);
+}
+
+
+/*shared*/
+
+.togg,
+label {
+  border-radius: 50px;
+}
+
+
+/*'un':checked state*/
+h3{
+  font-size: .9rem;
+  position: absolute;
+  bottom: 34%;
+  color:#FFF
+}
+.togg {
+  height: 54px;
+    width: 162px;
+    background: rgb(175, 25, 25);
+    position: fixed;
+    left: 2%;
+    bottom: 2%;
+    box-shadow: 0 0 2px rgba(43,43,43,1);
   
+}
+
+label {
+  height: 54px;
+  width: 54px;
+  background: rgba(255, 255, 255, 1);
+  position: absolute;
+ 
+  left: 0px;
+  cursor: pointer;
+
+}
+
+.togg::before {
+  content: '';
+  height: 60px;
+  width: 5px;
+  position: absolute;
+  top: calc(50% - 30px);
+  left: calc(50% - 2.5px);
+  transform: rotate(45deg);
+}
+
+.togg::after {
+  content: '';
+  height: 5px;
+  width: 60px;
+  position: absolute;
+  top: calc(50% - 2.5px);
+  left: calc(50% - 30px);
+  transform: rotate(45deg);
+}
+
+
+
+/* pesduo class on toggle */
+input[type="checkbox"]:checked ~ h3::before ::after{
+right: 36%;
+  color:#FFF}
+input[type="checkbox"]:checked ~ .togg ::before{
+  height: 50px;
+  top: calc(55% - 25px);
+  left: calc(60% - 2.5px);
+  background: rgba(73,168,68,1);
+    
+
+    
+}
+input[type="checkbox"]:checked ~ .togg ::after{
+  width: 20px;
+  top: calc(95% - 25px);
+  left: calc(22.5% - 2.5px);
+  background: rgba(73,168,68,1);
+}
+  /* paginationn */
+  .pagination {
+    z-index: 333;
+    position: fixed;
+    bottom: 2%;
+    border-radius: 5px;
+ 
+      left: 50%;
+      transform: translateX(-50%);
+  
+  }
+  
+  .pagination a {
+    border-radius: 50%;
+    background-color: #000;
+    opacity: .4;
+    font-size: 19px;
+    transition: background-color .3s;
+    color: #fff;
+    float: left;
+    bottom: 14px;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #11dc17;}
   /* loading anim */
   .ring {
+    z-index: 555;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -145,7 +330,9 @@
             box-shadow: 0 0 20px #fff000;
   }
   
-  .contener {
+  
+ 
+   /* .page {
     display: -ms-grid;
     display: grid;
     grid-column-gap: 4em;
@@ -164,7 +351,7 @@
         align-content: center;
     padding-top: 57px;
     background-color: rgb(219, 217, 217);
-  }
+  } */
   
   img {
     position: absolute;
@@ -221,6 +408,19 @@
   
   /* media for mob */
   @media screen and (max-width: 621px) {
+    h3{
+      position: absolute;
+      z-index: 40;
+    }
+    .togg {
+      height: 54px;
+        width: 162px;
+        background: rgb(175, 25, 25);
+        position: fixed;
+  top: 1%;
+ left: 0%;
+        box-shadow: 0 0 2px rgba(43,43,43,1);}
+      
     .modalWindow {
       -webkit-box-shadow: 0px 0px 16px -7px rgba(34, 60, 80, 0.2);
               box-shadow: 0px 0px 16px -7px rgba(34, 60, 80, 0.2);
@@ -272,7 +472,7 @@
     .modalWindow_text2 {
         width: auto;
       top: 21rem;
-      left: 11.5rem;
+      left: 10rem;
       position: absolute;
       display: -ms-grid;
       display: grid;

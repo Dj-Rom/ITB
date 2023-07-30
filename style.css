@@ -130,7 +130,8 @@
  position:absolute;
  top: 4px;
  right: 9px;
-  cursor: pointer;
+ z-index: 22;
+ cursor: pointer;
 }
 .modalWindow_img {
   position: absolute;

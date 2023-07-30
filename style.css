@@ -113,6 +113,10 @@
   background-color: #49a844;
 }
 .modalWindow {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  transform: translateY(-50%);
   overflow: auto;
   background: -webkit-gradient(linear, right top, left top, color-stop(49.4%, #FFF), color-stop(68.4%, rgba(255, 255, 255, 0)));
   background: -o-linear-gradient(right, #FFF 49.4%, rgba(255, 255, 255, 0) 68.4%);
@@ -513,10 +517,5 @@ img {
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     justify-items: center;
-  }
-}
-@media screen and (max-height: 405px) {
-  .modalWindow {
-    top: 0px;
   }
 }

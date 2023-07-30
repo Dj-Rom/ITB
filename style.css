@@ -126,6 +126,12 @@
   z-index: 222;
   border-radius: 20px;
 }
+.XClosed{
+ position:absolute;
+ top: 4px;
+ right: 9px;
+  cursor: pointer;
+}
 .modalWindow_img {
   position: absolute;
 }

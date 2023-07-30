@@ -250,12 +250,8 @@ input[type="checkbox"]:checked ~ .togg label {
   transform: rotate(360deg);
 
 }
-input[type="checkbox"]:checked ~ .togg::after {
-  width: 20px;
-  top: calc(95% - 25px);
-  left: calc(22.5% - 2.5px);
-  background: #49a844;
-}
+
+
 input[type="checkbox"]:checked ~ h3::before::after {
   right: 36%;
   color: #FFF;
@@ -285,16 +281,18 @@ h3 {
   transform: translateX(-50%);
 }
 .pagination a {
-  border-radius: 50%;
-  background-color: #000;
-  opacity: 0.4;
-  font-size: 35px;
-  transition: background-color 0.3s;
-  color: #fff;
-  float: left;
-  bottom: 14px;
-  padding: 8px 16px;
-  text-decoration: none;
+     width: 63px;
+    /* top: 22px; */
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.4;
+    font-size: 29px;
+    transition: background-color 0.3s;
+    color: #fff;
+    float: left;
+    /* bottom: 14px; */
+    padding: 8px 16px 15px 16px;
+    text-decoration: none;
 }
 .pagination a:hover:not(.active) {
   background-color: #11dc17;

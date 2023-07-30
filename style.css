@@ -487,6 +487,9 @@ img {
     justify-items: start;
     justify-content: space-evenly;
     align-items: end;
+     border-right: 2px solid #ccc;
+    margin-right: 20px;
+    padding-right: 10px;
   }
   .modalWindow_text2 {
     width: 9rem;
@@ -508,9 +511,7 @@ img {
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     justify-items: start;
-    border-left: 2px solid #ccc;
-    margin-left: 20px;
-    padding-left: 10px;
+  
   }
 }
 @media screen and (max-height: 405px) {

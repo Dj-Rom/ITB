@@ -89,7 +89,7 @@ async function fetchMovies(num) {
       window.addEventListener('click', (eo) => {
          eo = eo || window.event;
          data.results.forEach(element => {
-            if (mWImgstatus === true && eo.target.alt === undefined || event.target.className == "modalWindow" || event.target.className == "modalWindow_img") {
+            if (mWImgstatus === true && eo.target.alt === undefined || event.target.className === "modalWindow" || event.target.className === "modalWindow_img" || eo.target.className === "XClosed") {
                modalWindow.style.display = 'none'
                mWImgstatus = false
             }

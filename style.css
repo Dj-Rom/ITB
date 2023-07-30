@@ -275,10 +275,10 @@ a:hover {
   color: white;
 }
 h3 {
-  font-size: 0.9rem;
-  position: absolute;
-  bottom: 34%;
-  color: #FFF;
+    font-size: 0.86rem;
+    position: absolute;
+    bottom: 35%;
+    color: #FFF;
 }
 .pagination {
   z-index: 333;

@@ -146,7 +146,7 @@ $background-color_6: #4CAF50;
 	position: absolute;
 }
 .modalWindow_text {
-	width: auto;
+	width: 10rem;
 	left: 19rem;
 	top: 2rem;
 	position: absolute;
@@ -168,10 +168,11 @@ $background-color_6: #4CAF50;
 	-webkit-box-align: stretch;
 	-ms-flex-align: stretch;
 	align-items: stretch;
+	justify-items: start;
 }
 .modalWindow_text2 {
-	width: auto;
-	left: 29rem;
+	width: 10rem;
+	left: 30rem;
 	top: 2rem;
 	position: absolute;
 	display: -ms-grid;
@@ -192,6 +193,7 @@ $background-color_6: #4CAF50;
 	-webkit-box-align: stretch;
 	-ms-flex-align: stretch;
 	align-items: stretch;
+	justify-items: start;
 }
 .togg {
 	transition: 400ms all ease-in-out 50ms;
@@ -265,12 +267,6 @@ input[type="checkbox"] {
 					left: 110px;
 					transform: rotate(360deg);
 				}
-				&::after {
-					width: 20px;
-					top: calc(95% - 25px);
-					left: calc(22.5% - 2.5px);
-					background: #49a844;
-				}
 			}
 			h3 {
 				&::before {
@@ -307,15 +303,15 @@ h3 {
 	left: 50%;
 	transform: translateX(-50%);
 	a {
+		width: 63px;
 		border-radius: 50%;
 		background-color: $background-color_2;
 		opacity: 0.4;
-		font-size: 35px;
+		font-size: 29px;
 		transition: background-color 0.3s;
 		color: $color_1;
 		float: left;
-		bottom: 14px;
-		padding: 8px 16px;
+		padding: 8px 16px 15px 16px;
 		text-decoration: none;
 		&:hover {
 			&:not(.active) {
@@ -489,7 +485,7 @@ img {
 		position: absolute;
 	}
 	.modalWindow_text {
-		width: auto;
+		width: 7rem;
 		top: 21rem;
 		left: 2rem;
 		position: absolute;
@@ -500,22 +496,26 @@ img {
 		flex-wrap: wrap;
 		-webkit-box-pack: space-evenly;
 		-ms-flex-pack: space-evenly;
-		justify-content: space-evenly;
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
 		flex-direction: column;
 		-ms-flex-line-pack: distribute;
-		align-content: space-around;
+		align-content: stretch;
 		-webkit-box-align: stretch;
 		-ms-flex-align: stretch;
-		align-items: stretch;
 		overflow-y: auto;
+		justify-items: stretch;
+		justify-content: space-evenly;
+		align-items: end;
+		border-right: 2px solid #ccc;
+		margin-right: 20px;
+		padding-right: 10px;
 	}
 	.modalWindow_text2 {
-		width: auto;
+		width: 9rem;
 		top: 21rem;
-		left: 10rem;
+		left: 9.2rem;
 		position: absolute;
 		display: -ms-grid;
 		display: grid;
@@ -524,16 +524,14 @@ img {
 		flex-wrap: wrap;
 		-webkit-box-pack: space-evenly;
 		-ms-flex-pack: space-evenly;
-		justify-content: space-evenly;
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
 		-ms-flex-direction: column;
 		flex-direction: column;
 		-ms-flex-line-pack: distribute;
-		align-content: space-around;
 		-webkit-box-align: stretch;
 		-ms-flex-align: stretch;
-		align-items: stretch;
+		justify-items: center;
 	}
 }
 @media screen and (max-height: 405px) {

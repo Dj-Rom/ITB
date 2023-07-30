@@ -70,6 +70,7 @@ async function fetchMovies(num) {
          const bGText = document.createElement('h5');
          bGText.className = 'bGText';
          backgroundImg.className = "backgroundImg"
+         backgroundImg.id = data.results[i].name;
          personage.className = "personage"
          personage.id = data.results[i].name;
          img.src = data.results[i].image;
@@ -93,7 +94,7 @@ async function fetchMovies(num) {
                modalWindow.style.display = 'none'
                mWImgstatus = false
             }
-            if (element.name == eo.target.alt) {
+            if (element.name == eo.target.alt || element.name === eo.target.id ) {
                async function fetchLocation(num) {
                   const location = await fetch(element.location.url, {
                      method: 'GET'

@@ -147,7 +147,7 @@ async function fetchMovies(num) {
                         mWOrigin.innerHTML = response.name
                         return response
                      })
-                     .catch(e => console.error("error loading Episode from server", e), mWOrigin.innerHTML = "unknow")
+                     .catch(e => console.error("error loading Episode from server", e), mWOrigin.innerHTML = "unknown")
                   modalWindow.style.display = 'block'
 
                }
